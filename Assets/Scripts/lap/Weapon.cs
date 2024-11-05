@@ -20,12 +20,26 @@ public abstract class Weapon : MonoBehaviour
         }
     }
 
+    protected Ishootable shooter;
     public abstract void OnHitWith(Character _character);
     public abstract void Move();
-   
-    public int GetShootDiraction()
+
+    public void Init (int _damage, Ishootable _owner)
     {
-        return 1;
+        Damage = _damage;
+        shooter = _owner;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        OnHitWith(other.GetComponent<Character>());
+    }
+
+    public int GetShootDirection()
+    {
+        float shootDir = shooter.SpawnPoint.position.x - shooter.SpawnPoint.position.x;
+        if (shootDir > 0 ) { return 1; }
+        return -1;
     
     }
 

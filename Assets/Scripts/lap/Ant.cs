@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public  class Ant : Ennamy
+public  class Ant : Enemy
 {
     [SerializeField]private Vector2 velocity;
     [SerializeField]private Transform[] moveOpints;

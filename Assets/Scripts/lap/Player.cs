@@ -6,13 +6,9 @@ public class Player : Character, Ishootable //ตรงนี้เพิ่ม isshootable
 {
     //เพิ่มมา
     [field: SerializeField] public GameObject Bullet { get; set; }
-    
-    
-    
+   
     [SerializeField] private Transform spawnPoint;
     public Transform SpawnPoint { get { return spawnPoint; } set { spawnPoint = value; } }
-
-
 
     //colldown bullet
     [SerializeField] private float bulletSpawnTime;
@@ -20,14 +16,19 @@ public class Player : Character, Ishootable //ตรงนี้เพิ่ม isshootable
 
     [SerializeField] private float bulletTime;
     public float BulletTime { get { return bulletTime; } set { bulletTime = value; } }
+    
     public void Shoot()
     {
         
-        if (Input.GetButtonDown( "Fire1") && BulletTime >=  bulletSpawnTime)
+        if (Input.GetButtonDown( "Fire1") && BulletTime >=  BulletSpawnTime)
         {
-            Instantiate(Bullet, SpawnPoint.position, Quaternion.identity);
+            GameObject obj = Instantiate(Bullet, SpawnPoint.position, Quaternion.identity);
+
+            Banana banana = obj.GetComponent<Banana>();
+
+            banana.Init(10, this);
+
             BulletTime = 0;
-            Debug.Log("555555555555");
         }
 
     }
@@ -35,10 +36,8 @@ public class Player : Character, Ishootable //ตรงนี้เพิ่ม isshootable
     public void Start()
     {
         InIt(100);
-        bulletSpawnTime = 2.0f;
-        bulletTime = 0.0f;
-    
-    
+        BulletTime = 0;
+        BulletSpawnTime = 2;
     
     }
     public void Update()
@@ -47,7 +46,7 @@ public class Player : Character, Ishootable //ตรงนี้เพิ่ม isshootable
     }
     public void FixedUpdate()
     {
-        bulletTime += Time.deltaTime;
+        BulletTime += Time.fixedDeltaTime;
 
     }
 
