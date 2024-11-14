@@ -22,6 +22,12 @@ public class Crocordie : Enemy, Ishootable
     public float BulletTime { get { return bulletTime; } set { bulletTime = value; } }
 
 
+    private void Start()
+    {
+        InIt(100);
+    }
+
+
     private void Update()
     {
         BulletTime += Time.deltaTime;

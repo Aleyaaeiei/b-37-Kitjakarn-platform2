@@ -9,25 +9,15 @@ public  class Ant : Enemy
 
     private void Start()
     {
-        Init(10);
+        InIt(100);
         Behaviour();
     }
 
-
-
-    public void Init(int newHealth)
-    {
-        Health = newHealth;
-    
-    
-    }
     private void FixedUpdate()
     {
         Behaviour();
     }
 
-
-    
     public override void Behaviour()
     {
         rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);

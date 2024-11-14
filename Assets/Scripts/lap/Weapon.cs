@@ -6,7 +6,7 @@ public abstract class Weapon : MonoBehaviour
 {
     [SerializeField] public string  Ishootable;
     
-    private int damage;
+    [SerializeField] private int damage;
     public int Damage
     {
         get
@@ -37,9 +37,10 @@ public abstract class Weapon : MonoBehaviour
 
     public int GetShootDirection()
     {
-        float shootDir = shooter.SpawnPoint.position.x - shooter.SpawnPoint.position.x;
-        if (shootDir > 0 ) { return 1; }
-        return -1;
+        float shootDir = shooter.SpawnPoint.position.x - shooter.SpawnPoint.parent.position.x;
+        if (shootDir > 0 ) 
+        return 1;
+        else return -1;
     
     }
 

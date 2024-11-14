@@ -19,21 +19,26 @@ public abstract class Character : MonoBehaviour
 
     public Animator anim;
     public Rigidbody2D rb;
+    public HelthBar healthBar;
+
 
     //method
 
     public bool IsDead()
     {
-        return health <= 0;
+        return Health <= 0;
     }
     public void TakeDamage(int damage)
     {
-        health -= damage;
+        Health -= damage;
+        healthBar.UpdateHealthBar(Health);
     }
     public void InIt(int newHealth)
     { 
         Health = newHealth;
-    
+        healthBar.SetMaxHP(Health);
+        healthBar.UpdateHealthBar(Health);
+
     }
 
 }
